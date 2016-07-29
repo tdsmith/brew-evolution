@@ -12,7 +12,7 @@ Pouring the bottle (extracting the tarball) is easy enough. Neither the bottle's
 Store the formula used to build the bottle inside the bottle. It would be necessary to remove the `bottle` section or the `sha256` lines, as it wouldn't be possible to store the `sha256` of the bottle inside the bottle, lest the universe implode.
 
 ## Detailed design
-When installing a keg from source, store the formula inside the keg in a file named `NAME/VERSION/.bottle/NAME.rb`. When building a bottle from that keg, store the formula used to build the keg inside the bottle in a file named `NAME/VERSION/.bottle/NAME.rb` after removing the bottle block or `sha256` lines.
+When installing a keg from source, store the names of the dependencies and the versions used to build the keg inside `INSTALL_RECEIPT.json`. When building a bottle from that keg, store the formula used to build the keg inside the bottle in a file named `NAME/VERSION/.bottle/NAME.rb` after removing the bottle block or `sha256` lines.
 
 ## Alternatives considered
 1. Store the git SHA1 of the revision of the formula used to build the bottle in the bottle so that the formula can be later extracted with `git show`.

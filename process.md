@@ -10,7 +10,7 @@ The Homebrew evolution process covers major changes to the Homebrew package
 manager and the public interface of the Formula DSL. Smaller changes, such as
 bug fixes, optimisations or diagnostic improvements can be contributed via the
 normal contribution process; see
- [Contributing to Homebrew](https://github.com/Homebrew/brew/blob/master/.github/CONTRIBUTING.md).
+ [Contributing to Homebrew](https://github.com/Homebrew/brew/blob/master/CONTRIBUTING.md).
 
 ## Goals
 The Homebrew evolution process aims to leverage the collective ideas, insights

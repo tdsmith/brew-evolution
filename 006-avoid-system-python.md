@@ -33,7 +33,6 @@ Concerns with this approach are:
   * A possible mitigation would be to introduce yet another environment variable to force formulas with a :python dependency to build from source.
   * Another possible mitigation is the [`--with-custom-python`](https://github.com/Homebrew/homebrew-core/pull/3548/files#diff-79aaf9c9ba469f17b9f16f996d7e6290R17) switch deployed for Mercurial, which has the desired effect but introduces class-level conditional dependencies, which don't behave well.
 * Homebrew uses one fewer system dependency.
-* ?
 
 
 ## Alternatives
@@ -44,3 +43,7 @@ Concerns with this approach are:
 ## Recommendation
 
 Adopt the proposed solution with zero or more mitigations.
+
+## Resolution
+
+The proposed solution is adopted without mitigations.

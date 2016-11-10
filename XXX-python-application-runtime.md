@@ -22,15 +22,15 @@ and to amend HEP 6 to use this new method.
 
 ## Proposed solution
 
-The proposed solution is to add two additional keg-only formulas to homebrew-core, packaging CPython 2.7 and CPython 3. Instead of using `depends_on :python(3)`, all formulas that install Python applications will depend unconditionally on one of these new, keg-only formulas.
+The proposed solution is to add an additional keg-only formula to homebrew-core, packaging CPython 2.7. Instead of using `depends_on :python`, all formulas that install Python 2 applications will depend unconditionally on this new, keg-only formula.
 
-The packages installed by these new formulas will be known as the "Homebrew Python application runtime."
+The package installed by this new formula will be known as the "Homebrew Python 2 application runtime."
 
 ## Detailed design
 
 Some desired attributes of the design are:
 
-* The Homebrew Python application runtime (PAR) will be completely independent from the `python` or `python3` formulæ and any other installed Python distributions. Installing the PAR must not change the behavior of any other installed Python distribution. Installing the PAR must not change the default Python interpreter.
+* The Homebrew Python application runtime (PAR) will be completely independent from the `python` formula and any other installed Python distributions. Installing the PAR must not change the behavior of any other installed Python distribution. Installing the PAR must not change the default Python interpreter.
 * The PAR may never be linked into HOMEBREW_PREFIX.
 * Formulas may not install packages to the PAR's prefix.
 * The PAR will ship with the virtualenv package, which will subsume the function of the virtualenv `resource` on the `Homebrew::Language::Python::Virtualenv` mixin module.

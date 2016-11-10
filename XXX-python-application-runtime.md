@@ -7,15 +7,15 @@ Package a "secret" keg-only Python distribution to use as a runtime for Python a
 
 * HEP 6 described the motivation for avoiding system Python for applications installed by Homebrew and recommended that applications are packaged with `depends_on :python`.
 * Adding a PythonRequirement to a formula with `depends_on :python` often has the effect of installing the Homebrew `"python"` package.
-* Installing the Homebrew `"python"` package will create a link to a `python` executable in `HOMEBREW_PREFIX/bin`. If Homebrew's bin directory is in PATH and the `"python"` package was not previously installed, this can have the effect of changing the system's default python interpreter.
-* Unintentionally changing the system's default python interpreter [^default-interpreter] can cause confusion.
+* Installing the Homebrew `"python"` package will create a link to a `python` executable in `HOMEBREW_PREFIX/bin`. If Homebrew's bin directory is in PATH and the `"python"` package was not previously installed, this can have the effect of changing the default python interpreter.
+* Unintentionally changing the default python interpreter [^default-interpreter] can cause confusion.
 
-[^default-interpreter]: For purposes of this proposal, "the system's default python interpreter" means "what you get when you run `which python`".
+[^default-interpreter]: For purposes of this proposal, "the default python interpreter" means "what you get when you run `which python`".
 
 The motivation for this proposal is to establish a way to package Python applications for Homebrew which both
 
 * never uses system Python, and
-* never changes the system's default python interpreter,
+* never changes the default python interpreter,
 
 and to amend HEP 6 to use this new method.
 
@@ -30,7 +30,7 @@ The packages installed by these new formulas will be known as the "Homebrew Pyth
 
 Some desired attributes of the design are:
 
-* The Homebrew Python application runtime (PAR) will be completely independent from the `python` or `python3` formulæ and any other installed Python distributions. Installing the PAR must not change the behavior of any other installed Python distribution. Installing the PAR must not change the default system Python distribution.
+* The Homebrew Python application runtime (PAR) will be completely independent from the `python` or `python3` formulæ and any other installed Python distributions. Installing the PAR must not change the behavior of any other installed Python distribution. Installing the PAR must not change the default Python interpreter.
 * The PAR may never be linked into HOMEBREW_PREFIX.
 * Formulas may not install packages to the PAR's prefix.
 * The PAR will ship with the virtualenv package, which will subsume the function of the virtualenv `resource` on the `Homebrew::Language::Python::Virtualenv` mixin module.
@@ -56,7 +56,7 @@ This is not preferred because a) it represents a breaking change and b) the user
 
 * Do nothing and continue recommending `--build-from-source` to allow Python applications to build against "foreign" Pythons.
 
-This is not preferred because it is an indirect solution to the actual pain point, which is that changes to the default system Python interpreter are undesirable.
+This is not preferred because it is an indirect solution to the actual pain point, which is that changes to the default Python interpreter are undesirable.
 
 Further, the `--build-from-source` workaround relies on the bottle-pouring and dependency-resolution logic for requirements. This logic is subtle, difficult to explain, does not persist through upgrades, and subject to change.
 
